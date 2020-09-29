@@ -11,16 +11,26 @@ class RedditListTableTableViewController: UITableViewController {
     
     private var items: [RedditItem] = []
     private let redditService = RedditService()
+    
+    @IBOutlet weak var refreshController: UIRefreshControl!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
     }
     
-    private func loadData() {
+    private func loadData(done: (() -> Void)? = nil) {
         redditService.fetchTop { (response) in
             self.items = response.items
             self.tableView.reloadData()
+            done?()
+        }
+    }
+    
+    @IBAction func refreshTriggered(_ sender: UIRefreshControl) {
+        loadData {
+            sender.endRefreshing()
         }
     }
     
