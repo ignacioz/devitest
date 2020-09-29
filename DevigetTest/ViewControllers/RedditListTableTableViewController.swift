@@ -12,19 +12,25 @@ class RedditListTableTableViewController: UITableViewController {
     private var items: [RedditItem] = []
     private let redditService = RedditService()
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadData()
+    }
+    
     private func loadData() {
         redditService.fetchTop { (response) in
             self.items = response.items
             self.tableView.reloadData()
         }
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadData()
-
+    
+    private func removeItem(item: RedditItem) {
+        if let index = self.items.firstIndex(of: item) {
+            let path = IndexPath(row: index, section: 0)
+            self.items.remove(at: index)
+            self.tableView.deleteRows(at: [path], with: .left)
+        }
     }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,6 +51,10 @@ class RedditListTableTableViewController: UITableViewController {
         
         if let thumbnail = item.thumbnail, let url = NSURL(string: thumbnail) {
             cell.thumbnail?.loadImageFrom(link: url, contentMode: .scaleToFill)
+        }
+        
+        cell.removeAction = { [unowned self] in
+            self.removeItem(item: item)
         }
 
         return cell

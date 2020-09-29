@@ -14,10 +14,16 @@ class RedditCellTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     
     @IBOutlet weak var thumbnail: UIImageView!
+    
+    var removeAction: (() -> Void)!
         
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    @IBAction func removeTapped(_ sender: Any) {
+        removeAction()
     }
 
 }
