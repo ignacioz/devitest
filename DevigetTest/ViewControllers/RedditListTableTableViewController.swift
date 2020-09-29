@@ -7,13 +7,18 @@
 
 import UIKit
 
+protocol ItemSelectionDelegate: class {
+  func itemSelected(_ item: RedditItem)
+}
+
 class RedditListTableTableViewController: UITableViewController {
     
     private var items: [RedditItem] = []
     private let redditService = RedditService()
     
     @IBOutlet weak var refreshController: UIRefreshControl!
-
+    
+    var delegate: ItemSelectionDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +75,15 @@ class RedditListTableTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = items[indexPath.row]
+            
+        if let detailViewController = delegate as? DetailViewController {
+          splitViewController?.showDetailViewController(detailViewController, sender: nil)
+            
+            delegate?.itemSelected(item)
+        }
+    }
     
     
 }

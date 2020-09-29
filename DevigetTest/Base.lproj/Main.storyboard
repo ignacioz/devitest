@@ -8,16 +8,31 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="92T-hc-iAf">
             <objects>
-                <viewController id="LWY-Iy-MsO" sceneMemberID="viewController">
+                <viewController id="LWY-Iy-MsO" customClass="DetailViewController" customModule="DevigetTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lAe-Po-c2S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLT-HD-JNV">
+                                <rect key="frame" x="179.5" y="434" width="55" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="3bQ-uB-i67"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SLT-HD-JNV" firstAttribute="centerY" secondItem="lAe-Po-c2S" secondAttribute="centerY" id="PML-v8-ViR"/>
+                            <constraint firstItem="SLT-HD-JNV" firstAttribute="centerX" secondItem="lAe-Po-c2S" secondAttribute="centerX" id="nYl-hN-KNB"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="SLT-HD-JNV" id="i1N-iY-FQe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xz2-Xc-nAg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -98,6 +113,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="cRF-At-zBM"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="aoo-YB-0Uz">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <action selector="refreshTriggered:" destination="GYY-Du-zOC" eventType="valueChanged" id="ENK-Dz-YFz"/>

@@ -18,6 +18,7 @@
 		74B5AE4A2523914B00FF180F /* RedditService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE492523914B00FF180F /* RedditService.swift */; };
 		74B5AE4F2523923D00FF180F /* RedditCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE4E2523923D00FF180F /* RedditCellTableViewCell.swift */; };
 		74B5AE542523BE4F00FF180F /* ImageView+Lazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE532523BE4F00FF180F /* ImageView+Lazy.swift */; };
+		74B5AE572523E14D00FF180F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE562523E14D00FF180F /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		74B5AE492523914B00FF180F /* RedditService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditService.swift; sourceTree = "<group>"; };
 		74B5AE4E2523923D00FF180F /* RedditCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditCellTableViewCell.swift; sourceTree = "<group>"; };
 		74B5AE532523BE4F00FF180F /* ImageView+Lazy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Lazy.swift"; sourceTree = "<group>"; };
+		74B5AE562523E14D00FF180F /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		74B5AE372523836B00FF180F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				74B5AE562523E14D00FF180F /* DetailViewController.swift */,
 				74B5AE382523838500FF180F /* MainViewController.swift */,
 				74B5AE452523911C00FF180F /* RedditListTableTableViewController.swift */,
 			);
@@ -184,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74B5AE572523E14D00FF180F /* DetailViewController.swift in Sources */,
 				74B5AE542523BE4F00FF180F /* ImageView+Lazy.swift in Sources */,
 				74B5AE272523828C00FF180F /* ViewController.swift in Sources */,
 				74B5AE232523828C00FF180F /* AppDelegate.swift in Sources */,
