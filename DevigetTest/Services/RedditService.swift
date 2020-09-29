@@ -11,13 +11,15 @@ struct RedditItem: Codable, Equatable {
     let author: String
     let title: String
     let name: String
-    
+    let thumbnail: String?
+
     enum CodingKeys: String, CodingKey {
         case kind = "kind"
         case data = "data"
         case title = "title"
         case author = "author"
         case name = "name"
+        case thumbnail = "thumbnail"
 
     }
     
@@ -28,6 +30,7 @@ struct RedditItem: Codable, Equatable {
         author = try data.decode(String.self, forKey: .author)
         title = try data.decode(String.self, forKey: .title)
         name = try data.decode(String.self, forKey: .name)
+        thumbnail = try? data.decode(String.self, forKey: .thumbnail)
 
     }
     

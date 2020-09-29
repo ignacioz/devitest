@@ -11,7 +11,7 @@ class RedditListTableTableViewController: UITableViewController {
     
     private var items: [RedditItem] = []
     private let redditService = RedditService()
-    
+
     private func loadData() {
         redditService.fetchTop { (response) in
             self.items = response.items
@@ -42,6 +42,10 @@ class RedditListTableTableViewController: UITableViewController {
         
         cell.title.text = item.author
         cell.myDescription.text = item.title
+        
+        if let thumbnail = item.thumbnail, let url = NSURL(string: thumbnail) {
+            cell.thumbnail?.loadImageFrom(link: url, contentMode: .scaleToFill)
+        }
 
         return cell
     }
