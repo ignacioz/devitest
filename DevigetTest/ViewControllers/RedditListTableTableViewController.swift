@@ -85,5 +85,11 @@ class RedditListTableTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let redditCell = cell as? RedditCellTableViewCell {
+            redditCell.thumbnail?.cancelLoadingImage()
+        }
+        
+    }
     
 }
