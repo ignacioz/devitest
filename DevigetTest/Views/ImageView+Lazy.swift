@@ -22,7 +22,7 @@ extension UIImageView {
         }
     }
     
-    func loadImageFrom(link: NSURL, contentMode: UIView.ContentMode) {
+    func loadImageFrom(link: URL, contentMode: UIView.ContentMode) {
         
         if let imageFromCache = imageCache.object(forKey: link as AnyObject) as? UIImage {
 
@@ -32,14 +32,14 @@ extension UIImageView {
         
         self.image = nil
         
-        downloadSession = URLSession.shared.dataTask( with: link as URL, completionHandler: {
+        downloadSession = URLSession.shared.dataTask( with: link, completionHandler: {
             (data, response, error) -> Void in
             DispatchQueue.main.async {
                 self.contentMode =  contentMode
                 if let data = data {
                     let newImage = UIImage(data: data)!
                     self.image = newImage
-                    imageCache.setObject(newImage, forKey: link)
+                    imageCache.setObject(newImage, forKey: link as AnyObject)
                 }
             }
         })

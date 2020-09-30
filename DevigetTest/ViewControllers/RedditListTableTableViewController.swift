@@ -53,12 +53,9 @@ class RedditListTableTableViewController: UITableViewController {
 
         let item = viewModel.items[indexPath.row]
         
-        cell.title.text = item.author
-        cell.myDescription.text = item.title
+        let cellViewModel = RedditCellViewModel(item: item)
         
-        if let thumbnail = item.thumbnail, let url = NSURL(string: thumbnail) {
-            cell.thumbnail?.loadImageFrom(link: url, contentMode: .scaleToFill)
-        }
+        cell.configure(viewModel: cellViewModel)
         
         cell.removeAction = { [unowned self] in
             self.viewModel.removeItem(item: item)
@@ -79,7 +76,7 @@ class RedditListTableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let redditCell = cell as? RedditCellTableViewCell {
-            redditCell.thumbnail?.cancelLoadingImage()
+            redditCell.stopLoading()
         }
     }
     

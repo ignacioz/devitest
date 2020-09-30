@@ -28,4 +28,16 @@ class RedditCellTableViewCell: UITableViewCell {
         removeAction()
     }
 
+    func configure(viewModel: RedditCellViewModel) {
+        self.title.text = viewModel.author
+        self.myDescription.text = viewModel.title
+        
+        if let thumbnail = viewModel.thumbnail {
+            self.thumbnail.loadImageFrom(link: thumbnail, contentMode: .scaleToFill)
+        }
+    }
+    
+    func stopLoading() {
+        self.thumbnail?.cancelLoadingImage()
+    }
 }

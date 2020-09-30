@@ -15,7 +15,7 @@ struct RedditItem: Codable, Equatable {
     let author: String
     let title: String
     let name: String
-    let thumbnail: String?
+    let thumbnail: URL?
     let fullSizeImage: String?
     
     let createdAt: Date
@@ -53,7 +53,11 @@ struct RedditItem: Codable, Equatable {
         author = try data.decode(String.self, forKey: .author)
         title = try data.decode(String.self, forKey: .title)
         name = try data.decode(String.self, forKey: .name)
-        thumbnail = try? data.decode(String.self, forKey: .thumbnail)
+        if let thumbnailString = try? data.decode(String.self, forKey: .thumbnail) {
+            thumbnail = URL(string: thumbnailString)
+        } else {
+            thumbnail = nil
+        }
         
         let preview = try? data.decode(Preview.self, forKey: .preview)
         
