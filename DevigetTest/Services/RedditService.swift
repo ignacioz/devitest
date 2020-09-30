@@ -69,7 +69,7 @@ final class RedditService {
         
     private let limitToLoad = 40
     
-    func fetchTop(done: @escaping (RedditResponse) -> Void) {
+    func fetchTop(after: RedditItem? = nil, done: @escaping (RedditResponse) -> Void) {
         
         if let prevData = UserDefaults.standard.object(forKey: "top") as? Data {
             let decoder = JSONDecoder()
@@ -83,13 +83,15 @@ final class RedditService {
         var dataTask: URLSessionDataTask!
                     
         if var urlComponents = URLComponents(string: "https://www.reddit.com/r/popular/top.json") {
-            urlComponents.query = "limit=\(limitToLoad)"
+            var query = "limit=\(limitToLoad)"
+            if let afterItem = after {
+                query = query + "&after=\(afterItem.name)"
+            }
+            urlComponents.query = query
           guard let url = urlComponents.url else {
             return
           }
-            
-          print(url)
-            
+                        
           dataTask = defaultSession.dataTask(with: url) { data, response, error in
               if let data = data,
               let response = response as? HTTPURLResponse,

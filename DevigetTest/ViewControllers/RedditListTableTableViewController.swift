@@ -25,14 +25,6 @@ class RedditListTableTableViewController: UITableViewController {
         loadData()
     }
     
-    private func loadData(done: (() -> Void)? = nil) {
-        redditService.fetchTop { (response) in
-            self.items = response.items
-            self.tableView.reloadData()
-            done?()
-        }
-    }
-    
     @IBAction func refreshTriggered(_ sender: UIRefreshControl) {
         loadData {
             sender.endRefreshing()
@@ -90,6 +82,37 @@ class RedditListTableTableViewController: UITableViewController {
             redditCell.thumbnail?.cancelLoadingImage()
         }
         
+    }
+    
+    override open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == self.items.count-10 {
+            loadMore()
+        }
+    }
+    
+}
+
+
+// MARK: - Table view data loading
+extension RedditListTableTableViewController {
+    
+    private func loadData(done: (() -> Void)? = nil) {
+        redditService.fetchTop { (response) in
+            self.items = response.items
+            self.tableView.reloadData()
+            done?()
+        }
+    }
+    
+    private func loadMore(done: (() -> Void)? = nil) {
+        guard let lastItem = items.last else {
+            return
+        }
+        redditService.fetchTop(after: lastItem) { (response) in
+            self.items.append(contentsOf: response.items)
+            self.tableView.reloadData()
+            done?()
+        }
     }
     
 }
