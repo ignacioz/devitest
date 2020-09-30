@@ -23,6 +23,7 @@
 		74B5AE5E2524C30E00FF180F /* RedditTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE5D2524C30E00FF180F /* RedditTableViewModel.swift */; };
 		74B5AE622524CA2700FF180F /* RedditCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE612524CA2700FF180F /* RedditCellViewModel.swift */; };
 		74B5AE662524CC3000FF180F /* Date+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE652524CC3000FF180F /* Date+Test.swift */; };
+		74B5AE6925250D6A00FF180F /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE6825250D6A00FF180F /* String+URL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		74B5AE5D2524C30E00FF180F /* RedditTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditTableViewModel.swift; sourceTree = "<group>"; };
 		74B5AE612524CA2700FF180F /* RedditCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditCellViewModel.swift; sourceTree = "<group>"; };
 		74B5AE652524CC3000FF180F /* Date+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Test.swift"; sourceTree = "<group>"; };
+		74B5AE6825250D6A00FF180F /* String+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				74B5AE652524CC3000FF180F /* Date+Test.swift */,
+				74B5AE6825250D6A00FF180F /* String+URL.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				74B5AE4F2523923D00FF180F /* RedditCellTableViewCell.swift in Sources */,
 				74B5AE462523911C00FF180F /* RedditListTableTableViewController.swift in Sources */,
 				74B5AE5E2524C30E00FF180F /* RedditTableViewModel.swift in Sources */,
+				74B5AE6925250D6A00FF180F /* String+URL.swift in Sources */,
 				74B5AE392523838500FF180F /* MainViewController.swift in Sources */,
 				74B5AE4A2523914B00FF180F /* RedditService.swift in Sources */,
 			);

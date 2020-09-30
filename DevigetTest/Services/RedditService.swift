@@ -7,30 +7,6 @@
 
 import Foundation
 
-func convertSpecialCharacters(string: String) -> String {
-        var newString = string
-        let char_dictionary = [
-            "&amp;" : "&",
-            "&lt;" : "<",
-            "&gt;" : ">",
-            "&quot;" : "\"",
-            "&apos;" : "'"
-        ];
-        for (escaped_char, unescaped_char) in char_dictionary {
-            newString = newString.replacingOccurrences(of: escaped_char, with: unescaped_char, options: NSString.CompareOptions.literal, range: nil)
-        }
-        return newString
-}
-
-extension String {
-    func validateUrl() -> Bool {
-        let regex = "http[s]?://(([^/:.[:space:]]+(.[^/:.[:space:]]+)*)|([0-9](.[0-9]{3})))(:[0-9]+)?((/[^?#[:space:]]+)([^#[:space:]]+)?(#.+)?)?"
-                let test = NSPredicate(format:"SELF MATCHES %@", regex)
-                let result = test.evaluate(with: self)
-                return result
-    }
-}
-
 struct RedditItem: Codable, Equatable {
     static func == (lhs: RedditItem, rhs: RedditItem) -> Bool {
         return lhs.name == rhs.name
@@ -90,10 +66,8 @@ struct RedditItem: Codable, Equatable {
         let preview = try? data.decode(Preview.self, forKey: .preview)
         
         if var imageString = preview?.images.first?.source.url {
-            imageString = convertSpecialCharacters(string: imageString)
-            
+            imageString = imageString.unescapingURLCharacters()
             let validURL = imageString.validateUrl()
-
             fullSizeImage = validURL ? URL(string: imageString) : nil
         } else {
             fullSizeImage = nil
