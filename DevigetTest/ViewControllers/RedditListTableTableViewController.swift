@@ -24,6 +24,7 @@ class RedditListTableTableViewController: UITableViewController {
         
         viewModel.reloadAction = { [weak self] in
             self?.tableView.reloadData()
+            self?.refreshController.endRefreshing()
         }
         
         viewModel.itemRemoved = {[weak self] index in
@@ -31,13 +32,19 @@ class RedditListTableTableViewController: UITableViewController {
             self?.tableView.deleteRows(at: [path], with: .left)
         }
         
-        viewModel.loadData()
+        reloadData()
+
+        self.overrideUserInterfaceStyle = .dark
     }
     
     @IBAction func refreshTriggered(_ sender: UIRefreshControl) {
-        viewModel.loadData()
+        reloadData()
     }
     
+    private func reloadData() {
+        self.refreshController.beginRefreshing()
+        viewModel.loadData()
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

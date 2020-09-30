@@ -17,7 +17,7 @@ struct RedditCellViewModel {
     init(item: RedditItem) {
         self.author = item.author
         self.thumbnail = item.thumbnail
-        self.comments = "\(item.numComments)"
+        self.comments = "\(item.numComments) comments"
         self.time = item.createdAt.timeAgoSinceDate()
         self.title = item.title
     }
