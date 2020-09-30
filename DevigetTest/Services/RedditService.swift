@@ -8,18 +8,42 @@
 import Foundation
 
 struct RedditItem: Codable, Equatable {
+    static func == (lhs: RedditItem, rhs: RedditItem) -> Bool {
+        return lhs.name == rhs.name
+    }
+
     let author: String
     let title: String
     let name: String
     let thumbnail: String?
+    let fullSizeImage: String?
+    
+    let createdAt: Date
+    
+    let numComments: Int
+    
+    struct ImageSource: Codable {
+        let url: String
+    }
+    
+    struct Image: Codable {
+        let source: ImageSource
+    }
+    
+    struct Preview: Codable {
+        let images: [Image]
+    }
 
     enum CodingKeys: String, CodingKey {
-        case kind = "kind"
         case data = "data"
         case title = "title"
         case author = "author"
         case name = "name"
         case thumbnail = "thumbnail"
+        case preview = "preview"
+        case images = "images"
+        case createdUTC = "created_utc"
+        case numComments = "num_comments"
 
     }
     
@@ -31,7 +55,16 @@ struct RedditItem: Codable, Equatable {
         title = try data.decode(String.self, forKey: .title)
         name = try data.decode(String.self, forKey: .name)
         thumbnail = try? data.decode(String.self, forKey: .thumbnail)
-
+        
+        let preview = try? data.decode(Preview.self, forKey: .preview)
+        
+        fullSizeImage = preview?.images.first?.source.url
+        
+        let createdAtUTC = try data.decode(Double.self, forKey: .createdUTC)
+        
+        createdAt = Date(timeIntervalSince1970: createdAtUTC)
+        
+        numComments = (try? data.decode(Int.self, forKey: .numComments)) ?? 0
     }
     
     func encode(to encoder: Encoder) throws {
@@ -91,7 +124,7 @@ final class RedditService {
           guard let url = urlComponents.url else {
             return
           }
-                        
+                                    
           dataTask = defaultSession.dataTask(with: url) { data, response, error in
               if let data = data,
               let response = response as? HTTPURLResponse,
