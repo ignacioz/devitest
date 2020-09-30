@@ -7,6 +7,21 @@
 
 import Foundation
 
+func convertSpecialCharacters(string: String) -> String {
+        var newString = string
+        let char_dictionary = [
+            "&amp;" : "&",
+            "&lt;" : "<",
+            "&gt;" : ">",
+            "&quot;" : "\"",
+            "&apos;" : "'"
+        ];
+        for (escaped_char, unescaped_char) in char_dictionary {
+            newString = newString.replacingOccurrences(of: escaped_char, with: unescaped_char, options: NSString.CompareOptions.literal, range: nil)
+        }
+        return newString
+}
+
 struct RedditItem: Codable, Equatable {
     static func == (lhs: RedditItem, rhs: RedditItem) -> Bool {
         return lhs.name == rhs.name
@@ -16,7 +31,7 @@ struct RedditItem: Codable, Equatable {
     let title: String
     let name: String
     let thumbnail: URL?
-    let fullSizeImage: String?
+    let fullSizeImage: URL?
     
     let createdAt: Date
     
@@ -53,6 +68,7 @@ struct RedditItem: Codable, Equatable {
         author = try data.decode(String.self, forKey: .author)
         title = try data.decode(String.self, forKey: .title)
         name = try data.decode(String.self, forKey: .name)
+        
         if let thumbnailString = try? data.decode(String.self, forKey: .thumbnail) {
             thumbnail = URL(string: thumbnailString)
         } else {
@@ -61,8 +77,14 @@ struct RedditItem: Codable, Equatable {
         
         let preview = try? data.decode(Preview.self, forKey: .preview)
         
-        fullSizeImage = preview?.images.first?.source.url
+        if var imageString = preview?.images.first?.source.url {
+            imageString = convertSpecialCharacters(string: imageString)
+            fullSizeImage = URL(string: imageString)
+        } else {
+            fullSizeImage = nil
+        }
         
+                
         let createdAtUTC = try data.decode(Double.self, forKey: .createdUTC)
         
         createdAt = Date(timeIntervalSince1970: createdAtUTC)

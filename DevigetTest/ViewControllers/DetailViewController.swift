@@ -10,30 +10,29 @@ import UIKit
 class DetailViewController: UIViewController {
 
     var currentItem: RedditItem?
-    
     @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     override func viewWillAppear(_ animated: Bool) {
         if let currentItem = currentItem {
-            titleLabel?.text = currentItem.author
+            loadViews(item: currentItem)
+        }
+    }
+    
+    private func loadViews(item: RedditItem) {
+        
+        //this is needed because it may happen that you switch fast to a separate view that reuses this controller and may cause it to show a different image
+        imageView?.cancelLoadingImage()
+        
+        titleLabel?.text = item.title
+        authorLabel?.text = item.author
+        if let image = item.fullSizeImage {
+            imageView?.loadImageFrom(link: image, contentMode: .scaleAspectFit)
         }
     }
 
@@ -42,6 +41,6 @@ class DetailViewController: UIViewController {
 extension DetailViewController: ItemSelectionDelegate {
     func itemSelected(_ item: RedditItem) {
         self.currentItem = item
-        titleLabel?.text = item.author
+        loadViews(item: item)
     }
 }

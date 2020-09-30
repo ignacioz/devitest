@@ -16,9 +16,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLT-HD-JNV">
-                                <rect key="frame" x="179.5" y="434" width="55" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLT-HD-JNV">
+                                <rect key="frame" x="30" y="118" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="faj-2V-K48">
+                                <rect key="frame" x="107" y="143" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="faj-2V-K48" secondAttribute="height" multiplier="1:1" id="BOm-t6-xXj"/>
+                                    <constraint firstAttribute="height" constant="200" id="jUb-JH-yzL"/>
+                                    <constraint firstAttribute="width" constant="200" id="uzx-av-2T0"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxJ-UE-J2a">
+                                <rect key="frame" x="30" y="363" width="354" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -26,17 +40,26 @@
                         <viewLayoutGuide key="safeArea" id="3bQ-uB-i67"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="SLT-HD-JNV" firstAttribute="centerY" secondItem="lAe-Po-c2S" secondAttribute="centerY" id="PML-v8-ViR"/>
-                            <constraint firstItem="SLT-HD-JNV" firstAttribute="centerX" secondItem="lAe-Po-c2S" secondAttribute="centerX" id="nYl-hN-KNB"/>
+                            <constraint firstItem="MxJ-UE-J2a" firstAttribute="leading" secondItem="3bQ-uB-i67" secondAttribute="leading" constant="30" id="11x-DZ-62g"/>
+                            <constraint firstItem="3bQ-uB-i67" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="faj-2V-K48" secondAttribute="trailing" constant="50" id="8RE-Vt-gaO"/>
+                            <constraint firstItem="faj-2V-K48" firstAttribute="centerX" secondItem="lAe-Po-c2S" secondAttribute="centerX" id="RHE-QE-BvZ"/>
+                            <constraint firstItem="faj-2V-K48" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3bQ-uB-i67" secondAttribute="leading" constant="50" id="TMl-Va-f9r"/>
+                            <constraint firstItem="MxJ-UE-J2a" firstAttribute="top" secondItem="faj-2V-K48" secondAttribute="bottom" constant="20" id="bDB-k4-mZJ"/>
+                            <constraint firstItem="3bQ-uB-i67" firstAttribute="trailing" secondItem="MxJ-UE-J2a" secondAttribute="trailing" constant="30" id="dco-Ua-SQp"/>
+                            <constraint firstItem="faj-2V-K48" firstAttribute="top" secondItem="SLT-HD-JNV" secondAttribute="bottom" constant="25" id="dtL-cp-3Ce"/>
+                            <constraint firstItem="SLT-HD-JNV" firstAttribute="top" secondItem="3bQ-uB-i67" secondAttribute="top" constant="30" id="qNB-xo-abf"/>
+                            <constraint firstItem="SLT-HD-JNV" firstAttribute="leading" secondItem="3bQ-uB-i67" secondAttribute="leading" constant="30" id="xU8-GY-cOL"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="titleLabel" destination="SLT-HD-JNV" id="i1N-iY-FQe"/>
+                        <outlet property="authorLabel" destination="SLT-HD-JNV" id="fXk-Yu-qId"/>
+                        <outlet property="imageView" destination="faj-2V-K48" id="mo3-zT-HBg"/>
+                        <outlet property="titleLabel" destination="MxJ-UE-J2a" id="Eey-ot-I3x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xz2-Xc-nAg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-204" y="336"/>
+            <point key="canvasLocation" x="-204.34782608695653" y="334.82142857142856"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="gjP-KZ-Dn5">

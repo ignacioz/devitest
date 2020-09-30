@@ -24,12 +24,12 @@ extension UIImageView {
     
     func loadImageFrom(link: URL, contentMode: UIView.ContentMode) {
         
-        if let imageFromCache = imageCache.object(forKey: link as AnyObject) as? UIImage {
-
-            self.image = imageFromCache
-            return
-        }
-        
+//        if let imageFromCache = imageCache.object(forKey: link as AnyObject) as? UIImage {
+//
+//            self.image = imageFromCache
+//            return
+//        }
+//
         self.image = nil
         
         downloadSession = URLSession.shared.dataTask( with: link, completionHandler: {
