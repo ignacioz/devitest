@@ -23,6 +23,8 @@ class RedditCellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var timeLabel: UILabel!
     
+    private var currentModel: RedditCellViewModel?
+    
     var removeAction: (() -> Void)!
         
     override func awakeFromNib() {
@@ -38,10 +40,19 @@ class RedditCellTableViewCell: UITableViewCell {
     }
 
     func configure(viewModel: RedditCellViewModel) {
+        
+        //logic to refresh only the dot if the model is the same
+        if let currentModel = currentModel, viewModel.shouldRefreshDotOnly(previousModel: currentModel) {
+            self.dotViewed.isHidden = viewModel.hideDot
+            return
+        }
+        
+        self.currentModel = viewModel
         self.title.text = viewModel.title
         self.author.text = viewModel.author
         self.commentsLabel.text = viewModel.comments
         self.timeLabel.text = viewModel.time
+        self.dotViewed.isHidden = viewModel.hideDot
         
         if let thumbnail = viewModel.thumbnail {
             self.thumbnail.loadImageFrom(link: thumbnail, contentMode: .scaleAspectFit)

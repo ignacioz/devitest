@@ -22,6 +22,8 @@ struct RedditItem: Codable, Equatable {
     
     let numComments: Int
     
+    var read = false
+    
     struct ImageSource: Codable {
         let url: String
     }

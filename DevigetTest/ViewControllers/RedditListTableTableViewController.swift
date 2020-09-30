@@ -18,7 +18,7 @@ class RedditListTableTableViewController: UITableViewController {
     var viewModel: RedditTableViewModel!
     
     var delegate: ItemSelectionDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +30,18 @@ class RedditListTableTableViewController: UITableViewController {
         viewModel.itemRemoved = {[weak self] index in
             let path = IndexPath(row: index, section: 0)
             self?.tableView.deleteRows(at: [path], with: .left)
+        }
+        
+        viewModel.reloadItem = {[weak self] index in
+            let path = IndexPath(row: index, section: 0)
+            
+            guard let cell = self?.tableView.cellForRow(at: path) as? RedditCellTableViewCell, let item = self?.viewModel.items[index]
+            else {
+                return
+            }
+                
+            let cellViewModel = RedditCellViewModel(item: item)
+            cell.configure(viewModel: cellViewModel)
         }
         
         reloadData()
@@ -73,6 +85,8 @@ class RedditListTableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.items[indexPath.row]
+        
+        viewModel.itemSelected(item: item)
             
         if let detailViewController = delegate as? DetailViewController {
           splitViewController?.showDetailViewController(detailViewController, sender: nil)
