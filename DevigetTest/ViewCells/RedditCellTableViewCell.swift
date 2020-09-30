@@ -44,7 +44,7 @@ class RedditCellTableViewCell: UITableViewCell {
         self.timeLabel.text = viewModel.time
         
         if let thumbnail = viewModel.thumbnail {
-            self.thumbnail.loadImageFrom(link: thumbnail, contentMode: .scaleToFill)
+            self.thumbnail.loadImageFrom(link: thumbnail, contentMode: .scaleAspectFit)
         } else {
             self.thumbnail.image = nil
         }
