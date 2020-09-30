@@ -45,6 +45,8 @@ class RedditCellTableViewCell: UITableViewCell {
         
         if let thumbnail = viewModel.thumbnail {
             self.thumbnail.loadImageFrom(link: thumbnail, contentMode: .scaleToFill)
+        } else {
+            self.thumbnail.image = nil
         }
     }
     

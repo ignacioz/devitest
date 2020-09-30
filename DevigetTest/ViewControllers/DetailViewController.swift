@@ -27,12 +27,15 @@ class DetailViewController: UIViewController {
     private func loadViews(item: RedditItem) {
         
         //this is needed because it may happen that you switch fast to a separate view that reuses this controller and may cause it to show a different image
+        
         imageView?.cancelLoadingImage()
         
         titleLabel?.text = item.title
         authorLabel?.text = item.author
         if let image = item.fullSizeImage {
             imageView?.loadImageFrom(link: image, contentMode: .scaleAspectFit)
+        } else {
+            imageView.image = nil
         }
     }
 
