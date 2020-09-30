@@ -22,6 +22,15 @@ func convertSpecialCharacters(string: String) -> String {
         return newString
 }
 
+extension String {
+    func validateUrl() -> Bool {
+        let regex = "http[s]?://(([^/:.[:space:]]+(.[^/:.[:space:]]+)*)|([0-9](.[0-9]{3})))(:[0-9]+)?((/[^?#[:space:]]+)([^#[:space:]]+)?(#.+)?)?"
+                let test = NSPredicate(format:"SELF MATCHES %@", regex)
+                let result = test.evaluate(with: self)
+                return result
+    }
+}
+
 struct RedditItem: Codable, Equatable {
     static func == (lhs: RedditItem, rhs: RedditItem) -> Bool {
         return lhs.name == rhs.name
@@ -70,7 +79,10 @@ struct RedditItem: Codable, Equatable {
         name = try data.decode(String.self, forKey: .name)
         
         if let thumbnailString = try? data.decode(String.self, forKey: .thumbnail) {
-            thumbnail = URL(string: thumbnailString)
+            
+            let validURL = thumbnailString.validateUrl()
+            
+            thumbnail = validURL ? URL(string: thumbnailString) : nil
         } else {
             thumbnail = nil
         }
@@ -79,7 +91,10 @@ struct RedditItem: Codable, Equatable {
         
         if var imageString = preview?.images.first?.source.url {
             imageString = convertSpecialCharacters(string: imageString)
-            fullSizeImage = URL(string: imageString)
+            
+            let validURL = imageString.validateUrl()
+
+            fullSizeImage = validURL ? URL(string: imageString) : nil
         } else {
             fullSizeImage = nil
         }
