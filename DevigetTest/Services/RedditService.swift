@@ -74,7 +74,6 @@ struct RedditItem: Codable, Equatable {
         } else {
             fullSizeImage = nil
         }
-        
                 
         let createdAtUTC = try data.decode(Double.self, forKey: .createdUTC)
         
@@ -117,6 +116,11 @@ struct RedditResponse: Codable {
 final class RedditService {
         
     private let limitToLoad = 40
+    private var readItems: [String: Bool]
+    
+    init() {
+        readItems = UserDefaults.standard.dictionary(forKey: "readItems") as? [String: Bool] ?? [:]
+    }
     
     func fetchTop(after: RedditItem? = nil, done: @escaping (RedditResponse) -> Void) {
 
@@ -134,11 +138,25 @@ final class RedditService {
             return
           }
                                     
-          dataTask = defaultSession.dataTask(with: url) { data, response, error in
+          dataTask = defaultSession.dataTask(with: url) {[weak self] data, response, error in
+            
+            guard let sself = self else {
+                return
+            }
               if let data = data,
               let response = response as? HTTPURLResponse,
               response.statusCode == 200 {
-                let response = try! JSONDecoder().decode(RedditResponse.self, from: data)
+                var response = try! JSONDecoder().decode(RedditResponse.self, from: data)
+                
+                response.items = response.items.map({ (item) -> RedditItem in
+                    if (sself.readItems[item.name] ?? false) {
+                        var readItem = item
+                        readItem.read = true
+                        return readItem
+                    } else {
+                        return item
+                    }
+                })
                 
                 DispatchQueue.main.async {
                     done(response)
@@ -151,5 +169,11 @@ final class RedditService {
                 
         }
     
+    }
+    
+    //ideally this  should be in a separate model layer
+    func setItemAsRead(item: RedditItem) {
+        readItems[item.name] = true
+        UserDefaults.standard.set(readItems, forKey: "readItems")
     }
 }

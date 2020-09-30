@@ -52,6 +52,7 @@ final class RedditTableViewModel {
             newItem.read = true
             self.items[index] = newItem
             reloadItem(index)
+            redditService.setItemAsRead(item: item)
         }
         
     }
