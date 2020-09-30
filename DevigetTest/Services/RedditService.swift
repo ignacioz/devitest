@@ -119,14 +119,7 @@ final class RedditService {
     private let limitToLoad = 40
     
     func fetchTop(after: RedditItem? = nil, done: @escaping (RedditResponse) -> Void) {
-        
-        if let prevData = UserDefaults.standard.object(forKey: "top") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedData = try? decoder.decode(RedditResponse.self, from: prevData) {
-                done(loadedData)
-            }
-        }
-        
+
         let defaultSession = URLSession(configuration: .default)
 
         var dataTask: URLSessionDataTask!
@@ -146,12 +139,6 @@ final class RedditService {
               let response = response as? HTTPURLResponse,
               response.statusCode == 200 {
                 let response = try! JSONDecoder().decode(RedditResponse.self, from: data)
-                
-                let encoder = JSONEncoder()
-                if let encoded = try? encoder.encode(response) {
-                    let defaults = UserDefaults.standard
-                    defaults.set(encoded, forKey: "top")
-                }
                 
                 DispatchQueue.main.async {
                     done(response)
