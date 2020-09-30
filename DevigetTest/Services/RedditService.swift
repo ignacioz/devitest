@@ -44,7 +44,6 @@ struct RedditItem: Codable, Equatable {
         case images = "images"
         case createdUTC = "created_utc"
         case numComments = "num_comments"
-
     }
     
     init(from decoder: Decoder) throws {

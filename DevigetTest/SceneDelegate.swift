@@ -33,6 +33,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
         }
         
+        let tableViewModel = RedditTableViewModel()
+        masterViewController.viewModel = tableViewModel
+        
         masterViewController.delegate = detailViewController
     }
 
