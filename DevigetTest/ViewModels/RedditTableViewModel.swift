@@ -14,7 +14,7 @@ final class RedditTableViewModel {
         case items
     }
     
-    private static let MaxItemsRestoration = 20
+    private static let MaxItemsRestoration = 30
 
     private let redditService = RedditService()
     
@@ -124,6 +124,11 @@ final class RedditTableViewModel {
         restorationData[RestorationKeys.items.rawValue] = itemsEncoded
         
         return restorationData
+    }
+    
+    func dismissAll() {
+        items.removeAll()
+        reloadAction()
     }
     
 }
