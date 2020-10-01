@@ -15,8 +15,6 @@ final class RedditTableViewModel {
     }
     
     private static let MaxItemsRestoration = 30
-
-    private let redditService = RedditService()
     
     var items: [RedditItem] = []
     
@@ -25,6 +23,8 @@ final class RedditTableViewModel {
     var reloadItem: ((Int) -> Void)!
     
     var currentlySelectedItem: RedditItem?
+    
+    var redditModel: RedditModel!
     
     var firstTimeLoad = true
     
@@ -61,8 +61,8 @@ final class RedditTableViewModel {
             return
         }
         
-        redditService.fetchTop { [weak self] (response) in
-            self?.items = response.items
+        redditModel.fetchTop { [weak self] (items) in
+            self?.items = items
             self?.reloadAction()
             done?()
         }
@@ -72,8 +72,8 @@ final class RedditTableViewModel {
         guard let lastItem = items.last else {
             return
         }
-        redditService.fetchTop(after: lastItem) {[weak self] (response) in
-            self?.items.append(contentsOf: response.items)
+        redditModel.fetchTop(after: lastItem) {[weak self] (items) in
+            self?.items.append(contentsOf: items)
             self?.reloadAction()
             done?()
         }
@@ -96,8 +96,7 @@ final class RedditTableViewModel {
             newItem.read = true
             self.items[index] = newItem
             reloadItem(index)
-            redditService.setItemAsRead(item: item)
-
+            redditModel.setItemAsRead(item: item)
         }
         
     }

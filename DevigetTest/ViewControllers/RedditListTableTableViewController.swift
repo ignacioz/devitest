@@ -133,8 +133,6 @@ class RedditListTableTableViewController: UITableViewController {
             self.viewModel.removeItem(item: item)
         }
         
-        print("cell loaded", indexPath)
-
         return cell
     }
     
@@ -160,9 +158,6 @@ class RedditListTableTableViewController: UITableViewController {
         if indexPath.row == self.viewModel.items.count-5 {
             viewModel.loadMore()
         }
-        
-        print("will display", indexPath)
-
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

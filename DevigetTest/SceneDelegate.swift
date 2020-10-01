@@ -65,8 +65,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             rootViewController?.shouldStartWithFirstScreen = showingList
 
         }
+        
+        let listViewModel = restoredTableModel ?? RedditTableViewModel()
+        listViewModel.redditModel = RedditModel()
             
-        redditTableController?.viewModel = restoredTableModel ?? RedditTableViewModel()
+        redditTableController?.viewModel = listViewModel
     
     }
     
