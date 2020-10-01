@@ -35,7 +35,7 @@ final class SectionFooterView: UITableViewHeaderFooterView {
         button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         button.addTarget(self, action: #selector(self.dismissAllTapped), for: .touchUpInside)
         
-        //this is to extend itbo on iPhones with notches
+        //this is to extend it on iPhones with notches
         
         if let bottomInset = UIApplication.shared.windows.first?.safeAreaInsets.bottom, bottomInset > 0 {
             extendedView = UIView()
@@ -75,6 +75,8 @@ class RedditListTableTableViewController: UITableViewController {
         
         tableView.register(SectionFooterView.self, forHeaderFooterViewReuseIdentifier: SectionFooterView.reuseIdentifier)
         
+        
+        //inject load actions
         viewModel.reloadAction = { [weak self] in
             self?.tableView.reloadData()
             self?.refreshController.endRefreshing()
@@ -98,7 +100,7 @@ class RedditListTableTableViewController: UITableViewController {
         }
         
         reloadData()
-
+        
         self.overrideUserInterfaceStyle = .dark
     }
     
@@ -110,6 +112,7 @@ class RedditListTableTableViewController: UITableViewController {
         self.refreshController.beginRefreshing()
         viewModel.loadData()
     }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -136,6 +139,8 @@ class RedditListTableTableViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - Table view delegate
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = viewModel.items[indexPath.row]
         
@@ -180,21 +185,4 @@ class RedditListTableTableViewController: UITableViewController {
     }
     
     
-    func continueFrom(activity: NSUserActivity) {
-
-        let item = activity.userInfo?["currentItem"] as! String
-
-        let decoder = JSONDecoder()
-        let jsonString = item.data(using: .utf8)
-        let decodedItem = try! decoder.decode(RedditItem.self, from: jsonString!)
-
-        if let detailViewController = delegate as? DetailViewController {
-          splitViewController?.showDetailViewController(detailViewController, sender: nil)
-            
-            delegate?.itemSelected(decodedItem)
-        }
-    }
-    
-    
 }
-
