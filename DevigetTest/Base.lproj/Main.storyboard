@@ -62,7 +62,7 @@
             </objects>
             <point key="canvasLocation" x="-204.34782608695653" y="334.82142857142856"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Reddit Top Posts-->
         <scene sceneID="gjP-KZ-Dn5">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="GYY-Du-zOC" customClass="RedditListTableTableViewController" customModule="DevigetTest" customModuleProvider="target" sceneMemberID="viewController">
@@ -202,7 +202,7 @@
                             <outlet property="delegate" destination="GYY-Du-zOC" id="Xi9-dg-9AT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="cRF-At-zBM"/>
+                    <navigationItem key="navigationItem" title="Reddit Top Posts" id="cRF-At-zBM"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="aoo-YB-0Uz">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
