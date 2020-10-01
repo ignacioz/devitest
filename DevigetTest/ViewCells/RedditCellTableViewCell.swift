@@ -28,9 +28,7 @@ class RedditCellTableViewCell: UITableViewCell {
     var removeAction: (() -> Void)!
         
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
+        super.awakeFromNib()        
         accessoryType = .disclosureIndicator
 
     }
