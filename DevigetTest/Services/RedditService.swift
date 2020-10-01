@@ -47,6 +47,7 @@ struct RedditItem: Codable, Equatable {
         case createdUTC = "created_utc"
         case numComments = "num_comments"
         case fullSizeImage = "fullSizeImage"
+        case read = "read"
 
     }
     
@@ -75,6 +76,8 @@ struct RedditItem: Codable, Equatable {
         
         numComments = (try? data.decode(Int.self, forKey: .numComments)) ?? 0
         
+        read = (try? data.decode(Bool.self, forKey: .read)) ?? false
+
         //to simplify our own encoding the full size image is set at the same level as the rest of the properties
         if let fullSizeImageString = try? data.decode(String.self, forKey: .fullSizeImage) {
             fullSizeImage = URL(string: fullSizeImageString)
@@ -100,6 +103,10 @@ struct RedditItem: Codable, Equatable {
         try data.encode(name, forKey: .name)
         try data.encode(author, forKey: .author)
         try data.encode(title, forKey: .title)
+        try data.encode(numComments, forKey: .numComments)
+        try data.encode(thumbnail?.absoluteURL, forKey: .thumbnail)
+        try data.encode(read, forKey: .read)
+
         try data.encode(createdAt.timeIntervalSince1970, forKey: .createdUTC)
 
         if let image = fullSizeImage {
