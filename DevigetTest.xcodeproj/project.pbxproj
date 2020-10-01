@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		74B5AE232523828C00FF180F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE222523828C00FF180F /* AppDelegate.swift */; };
 		74B5AE252523828C00FF180F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE242523828C00FF180F /* SceneDelegate.swift */; };
-		74B5AE272523828C00FF180F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE262523828C00FF180F /* ViewController.swift */; };
 		74B5AE2A2523828C00FF180F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B5AE282523828C00FF180F /* Main.storyboard */; };
 		74B5AE2C2523828F00FF180F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74B5AE2B2523828F00FF180F /* Assets.xcassets */; };
 		74B5AE2F2523828F00FF180F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B5AE2D2523828F00FF180F /* LaunchScreen.storyboard */; };
@@ -32,7 +31,6 @@
 		74B5AE1F2523828C00FF180F /* DevigetTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevigetTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B5AE222523828C00FF180F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74B5AE242523828C00FF180F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		74B5AE262523828C00FF180F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		74B5AE292523828C00FF180F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74B5AE2B2523828F00FF180F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74B5AE2E2523828F00FF180F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 				74B5AE372523836B00FF180F /* ViewControllers */,
 				74B5AE222523828C00FF180F /* AppDelegate.swift */,
 				74B5AE242523828C00FF180F /* SceneDelegate.swift */,
-				74B5AE262523828C00FF180F /* ViewController.swift */,
 				74B5AE282523828C00FF180F /* Main.storyboard */,
 				74B5AE2B2523828F00FF180F /* Assets.xcassets */,
 				74B5AE2D2523828F00FF180F /* LaunchScreen.storyboard */,
@@ -235,7 +232,6 @@
 				74B5AE622524CA2700FF180F /* RedditCellViewModel.swift in Sources */,
 				74B5AE572523E14D00FF180F /* DetailViewController.swift in Sources */,
 				74B5AE542523BE4F00FF180F /* ImageView+Lazy.swift in Sources */,
-				74B5AE272523828C00FF180F /* ViewController.swift in Sources */,
 				74B5AE5A25249F1400FF180F /* Dot.swift in Sources */,
 				74B5AE7C25263BD900FF180F /* RedditItem.swift in Sources */,
 				74B5AE232523828C00FF180F /* AppDelegate.swift in Sources */,
