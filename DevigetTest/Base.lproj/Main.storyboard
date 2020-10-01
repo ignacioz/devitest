@@ -47,6 +47,7 @@
                             <constraint firstItem="MxJ-UE-J2a" firstAttribute="top" secondItem="faj-2V-K48" secondAttribute="bottom" constant="20" id="bDB-k4-mZJ"/>
                             <constraint firstItem="3bQ-uB-i67" firstAttribute="trailing" secondItem="MxJ-UE-J2a" secondAttribute="trailing" constant="30" id="dco-Ua-SQp"/>
                             <constraint firstItem="faj-2V-K48" firstAttribute="top" secondItem="SLT-HD-JNV" secondAttribute="bottom" constant="25" id="dtL-cp-3Ce"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SLT-HD-JNV" secondAttribute="trailing" constant="10" id="neK-V9-W8f"/>
                             <constraint firstItem="SLT-HD-JNV" firstAttribute="top" secondItem="3bQ-uB-i67" secondAttribute="top" constant="30" id="qNB-xo-abf"/>
                             <constraint firstItem="SLT-HD-JNV" firstAttribute="leading" secondItem="3bQ-uB-i67" secondAttribute="leading" constant="30" id="xU8-GY-cOL"/>
                         </constraints>
