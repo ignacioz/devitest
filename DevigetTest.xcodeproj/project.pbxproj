@@ -13,7 +13,7 @@
 		74B5AE2A2523828C00FF180F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B5AE282523828C00FF180F /* Main.storyboard */; };
 		74B5AE2C2523828F00FF180F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74B5AE2B2523828F00FF180F /* Assets.xcassets */; };
 		74B5AE2F2523828F00FF180F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B5AE2D2523828F00FF180F /* LaunchScreen.storyboard */; };
-		74B5AE392523838500FF180F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE382523838500FF180F /* MainViewController.swift */; };
+		74B5AE392523838500FF180F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE382523838500FF180F /* RootViewController.swift */; };
 		74B5AE462523911C00FF180F /* RedditListTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE452523911C00FF180F /* RedditListTableTableViewController.swift */; };
 		74B5AE4A2523914B00FF180F /* RedditService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE492523914B00FF180F /* RedditService.swift */; };
 		74B5AE4F2523923D00FF180F /* RedditCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B5AE4E2523923D00FF180F /* RedditCellTableViewCell.swift */; };
@@ -35,7 +35,7 @@
 		74B5AE2B2523828F00FF180F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74B5AE2E2523828F00FF180F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74B5AE302523828F00FF180F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74B5AE382523838500FF180F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		74B5AE382523838500FF180F /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		74B5AE452523911C00FF180F /* RedditListTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditListTableTableViewController.swift; sourceTree = "<group>"; };
 		74B5AE492523914B00FF180F /* RedditService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditService.swift; sourceTree = "<group>"; };
 		74B5AE4E2523923D00FF180F /* RedditCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				74B5AE562523E14D00FF180F /* DetailViewController.swift */,
-				74B5AE382523838500FF180F /* MainViewController.swift */,
+				74B5AE382523838500FF180F /* RootViewController.swift */,
 				74B5AE452523911C00FF180F /* RedditListTableTableViewController.swift */,
 			);
 			path = ViewControllers;
@@ -230,7 +230,7 @@
 				74B5AE462523911C00FF180F /* RedditListTableTableViewController.swift in Sources */,
 				74B5AE5E2524C30E00FF180F /* RedditTableViewModel.swift in Sources */,
 				74B5AE6925250D6A00FF180F /* String+URL.swift in Sources */,
-				74B5AE392523838500FF180F /* MainViewController.swift in Sources */,
+				74B5AE392523838500FF180F /* RootViewController.swift in Sources */,
 				74B5AE4A2523914B00FF180F /* RedditService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

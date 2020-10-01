@@ -237,10 +237,10 @@
             </objects>
             <point key="canvasLocation" x="-204" y="-270"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Root View Controller-->
         <scene sceneID="oOW-PL-iLT">
             <objects>
-                <splitViewController allowDoubleColumnStyle="YES" id="Lxe-NQ-FHc" customClass="MainViewController" customModule="DevigetTest" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController allowDoubleColumnStyle="YES" id="Lxe-NQ-FHc" customClass="RootViewController" customModule="DevigetTest" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="jpK-lf-cku" kind="relationship" relationship="masterViewController" id="oJi-oy-cbX"/>
                         <segue destination="LWY-Iy-MsO" kind="relationship" relationship="detailViewController" id="W6G-GQ-odl"/>

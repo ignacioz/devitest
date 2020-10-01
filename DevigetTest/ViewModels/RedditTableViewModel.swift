@@ -16,6 +16,8 @@ final class RedditTableViewModel {
     var reloadAction: (() -> Void)!
     var itemRemoved: ((Int) -> Void)!
     var reloadItem: ((Int) -> Void)!
+    
+    var currentlySelectedItem: RedditItem?
 
     func loadData(done: (() -> Void)? = nil) {
         redditService.fetchTop { [weak self] (response) in
@@ -44,6 +46,7 @@ final class RedditTableViewModel {
     }
     
     func itemSelected(item: RedditItem) {
+        currentlySelectedItem = item
         if (item.read) {
             return
         }

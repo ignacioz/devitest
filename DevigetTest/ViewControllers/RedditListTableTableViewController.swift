@@ -107,4 +107,22 @@ class RedditListTableTableViewController: UITableViewController {
         }
     }
     
+    func continueFrom(activity: NSUserActivity) {
+
+        let item = activity.userInfo?["currentItem"] as! String
+
+        let decoder = JSONDecoder()
+        let jsonString = item.data(using: .utf8)
+        let decodedItem = try! decoder.decode(RedditItem.self, from: jsonString!)
+
+        if let detailViewController = delegate as? DetailViewController {
+          splitViewController?.showDetailViewController(detailViewController, sender: nil)
+            
+            delegate?.itemSelected(decodedItem)
+        }
+        print(decodedItem)
+    }
+    
+    
 }
+

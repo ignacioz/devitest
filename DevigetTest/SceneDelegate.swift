@@ -11,6 +11,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    var redditTableController: RedditListTableTableViewController?
+    var rootViewController: RootViewController?
+    
+    private func getCurrentlySelectedItemForRestoration(activity: NSUserActivity) -> RedditItem? {
+        
+        let item = activity.userInfo?["currentItem"] as! String
+
+        let decoder = JSONDecoder()
+        let jsonString = item.data(using: .utf8)
+        let decodedItem = try! decoder.decode(RedditItem.self, from: jsonString!)
+
+        return decodedItem
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -19,12 +32,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         guard
-          let splitViewController = window?.rootViewController as? UISplitViewController,
+          let splitViewController = window?.rootViewController as? RootViewController,
           let leftNavController = splitViewController.viewControllers.first
             as? UINavigationController,
             let rightNavController = splitViewController.viewControllers.last
               as? UINavigationController,
-          let masterViewController = leftNavController.viewControllers.first
+            let masterTableController = leftNavController.viewControllers.first
             as? RedditListTableTableViewController,
           let detailViewController = rightNavController.viewControllers.first
             as? DetailViewController
@@ -33,10 +46,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
         }
         
-        let tableViewModel = RedditTableViewModel()
-        masterViewController.viewModel = tableViewModel
+        redditTableController = masterTableController
+        rootViewController = splitViewController
         
-        masterViewController.delegate = detailViewController
+        let tableViewModel = RedditTableViewModel()
+        redditTableController?.viewModel = tableViewModel
+        
+        redditTableController?.delegate = detailViewController
+        
+        if let activity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+            
+            if let previouslySelectedItem = getCurrentlySelectedItemForRestoration(activity: activity) {
+                detailViewController.itemSelected(previouslySelectedItem)
+                            }
+            
+            let showingList = activity.userInfo?["showingList"] as? Bool ?? true
+            rootViewController?.shouldStartWithFirstScreen = showingList
+
+        }
+    
+    }
+    
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        
+        if let currentlySelectedItem = redditTableController?.viewModel.currentlySelectedItem {
+            let activity = NSUserActivity(activityType: "restoration")
+            activity.persistentIdentifier = UUID().uuidString
+            
+            let encoder = JSONEncoder()
+            let encoded = try! encoder.encode(currentlySelectedItem)
+            let str = String(decoding: encoded, as: UTF8.self)
+                    
+            let showingList = redditTableController?.viewIfLoaded?.window != nil
+            
+            activity.addUserInfoEntries(from: ["currentItem": str, "showingList": showingList])
+            
+            return activity
+        }
+        
+        return nil
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

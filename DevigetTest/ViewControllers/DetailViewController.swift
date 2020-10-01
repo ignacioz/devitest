@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
         if let image = item.fullSizeImage {
             imageView?.loadImageFrom(link: image, contentMode: .scaleAspectFit)
         } else {
-            imageView.image = nil
+            imageView?.image = nil
         }
     }
 
